@@ -1,0 +1,161 @@
+/* CSS Document */
+
+body{
+	margin: 0;
+	font-family: Verdana, Tahoma, sans-serif;
+	font-size: 16px;
+}
+
+i{
+	color: #999;
+    font-style: normal;
+    font-size: 14px;
+}
+
+#mainBox > div{
+	padding: 20px;
+}
+
+button, #node a, input[type="button"]{
+	display: inline-block;
+    padding: 5px 15px;
+    border: 1px solid darkgreen;
+    border-radius: 4px;
+    margin: 4px;
+    text-decoration: none;
+    background: lightyellow;
+    color: darkgreen;
+	cursor: pointer;
+	font-family: Verdana, Tahoma, sans-serif;
+	font-size: 16px;
+}
+
+button:hover,
+input[type="button"]:hover{
+	background: darkorange;
+    color: white;
+    border-color: white;
+}
+
+#node{
+	border: 1px solid #ccc;
+    padding: 4px;
+}
+#node a{
+	text-decoration: none;
+    color: black;
+    padding: 4px 10px;
+    background: aliceblue;
+    border-color: bisque;
+    font-size: 14px;
+}
+#node a:hover{
+	text-decoration: underline;
+}
+
+#nodeBox, #nextNode, #prop, #paginate{
+	display: none;
+}
+
+#nextNode div, #paginate div{
+	border: 1px solid #ccc;
+    margin-bottom: 20px;
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+	padding: 4px;
+}
+#nextNode div:after, #paginate div:after{
+	content: "";
+	flex: auto;
+}
+
+#paginate input{
+	font-size: 14px;
+	padding: 4px 8px;
+}
+#paginate input.now{
+	background: none;
+    border-color: #ccc;
+    color: #ccc;
+	pointer-events: none;
+}
+
+#prop div{
+	display: table;
+	border-collapse: collapse;
+}
+
+label{
+	display: table-row;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+}
+label var{
+	display: table-cell;
+	padding: 4px;
+	font-style: normal;
+	border: 1px solid #ccc;
+}
+label var:first-child{
+	text-align: right;
+	background: lightyellow;
+}
+label var:not(:first-child){
+	word-break: break-all;
+    background: #fff;
+    color: black;
+    font-size: 14px;
+}
+label:hover var:first-child{
+	background-color: beige;
+}
+label:hover var:not(:first-child){
+	background-color: aliceblue;
+}
+
+#popUpBox{
+	position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    box-sizing: border-box;
+	display: none;
+}
+
+#popUpBox center{
+	display: table;
+    margin: auto;
+	height: 100%;
+}
+#popUpBox div.middle{
+	display: table-cell;
+	vertical-align: middle;
+}
+#popUpBox div.frame{
+	padding: 20px;
+    border: 1px solid #ccc;
+    position: relative;
+    background: aliceblue;
+    box-shadow: 0 0 10px lightgrey;
+}
+#popUpBox .popUpClose{
+	position: absolute;
+    top: -40px;
+    right: -40px;
+    padding: 4px 8px;
+	box-shadow: 0 0 10px lightgrey;
+}
+
+#popUpBox textarea{
+	min-height: 120px;
+	min-width: 300px;
+}
+#popUpBox i{
+	display: block;
+    text-align: left;
+    margin-bottom: 10px;
+}

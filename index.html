@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		
+		<link rel="icon" type="image/png" href="favicon.png">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		
+		<script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<script type="text/javascript" src="js/file.js"></script>
+		<script type="text/javascript" src="js/node.js"></script>
+		<script type="text/javascript" src="js/getObj.js"></script>
+		<script type="text/javascript" src="js/tools.js"></script>
+		<script type="text/javascript" src="js/paginate.js"></script>
+		
+		<title>json2editor</title>
+	</head>
+
+	<body>
+		<div id="mainBox">
+			<div id="file">
+				<input id="jsonFile" type="file" hidden="hidden" />
+				<button id="openFile">Open file</button>
+				<button id="saveFile">Save file</button>
+			</div>
+			<div id="nodeBox">
+				<i>Breadcrumbs:</i>
+				<div id="node"></div>
+			</div>
+			<div id="outputBox">
+				<div id="paginate">
+					<i>Paginate:</i>
+					<div></div>
+				</div>
+				<div id="nextNode">
+					<i>Next nodes:</i>
+					<div></div>
+				</div>
+				<div id="prop">
+					<i>Properties:</i>
+					<div></div>
+				</div>
+			</div>
+			<div id="popUpBox">
+				<center>
+					<div class="middle">
+						<div class="frame">
+							<button class="popUpClose" onClick="app.tools.hidePopup();">✕</button>
+							<div class="content">
+								<i></i>
+								<textarea></textarea>
+							</div>
+						</div>
+					</div>
+				</center>
+			</div>
+		</div>
+	</body>
+</html>
