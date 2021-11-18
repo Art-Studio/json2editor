@@ -4,6 +4,7 @@
 
 $(function(){
 	
+	var $window = $(window);
 	var $popUp = $('#popUpBox');
 	
 	app.tools = {
@@ -14,6 +15,7 @@ $(function(){
 			
 			$('textarea', $popUp)
 				.val(val)
+				.css({ maxWidth: $window.width() - 100, maxHeight: $window.height() / 1.8 })
 				.on('change keyup paste', function(){
 				
 					app.tools.setProp(key, $(this).val());

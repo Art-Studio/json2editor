@@ -4,7 +4,30 @@
 
 $(function(){
 	
+	var _fileName = '';
+
 	app.file = {
+		
+		init: function(){
+			// openFile
+			$('#openFile').click(function(){
+
+				$('input#jsonFile')
+				.trigger('click')
+				.change(function(){
+					// uploadFile($(this).prop('files')[0]);
+					var file = $(this).prop('files')[0];
+					if(file){ app.file.read(file); }
+					$(this).off();
+				});
+
+			});
+
+			// saveFile
+			$('#saveFile').click(function(){
+				app.file.save( JSON.stringify(app.data.root, null, 4), _fileName, 'text/plain' );
+			});
+		},
 		
 		save: function(data, fileName, type){
 			var a = document.createElement('a');
@@ -35,6 +58,9 @@ $(function(){
 
 				console.log('readFile:', 'success');
 				app.processing(result);
+				
+				$('#saveFile').removeAttr('disabled');
+				_fileName = file.name;
 			};
 		},
 
@@ -90,5 +116,7 @@ $(function(){
 		}
 
 	};
+	
+	app.file.init();
 	
 });

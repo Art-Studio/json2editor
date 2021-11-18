@@ -37,6 +37,12 @@ input[type="button"]:hover{
     border-color: white;
 }
 
+button[disabled]{
+	pointer-events: none;
+	color: #ccc;
+	border-color: #ccc;
+}
+
 #node{
 	border: 1px solid #ccc;
     padding: 4px;
@@ -116,7 +122,7 @@ label:hover var:not(:first-child){
 }
 
 #popUpBox{
-	position: absolute;
+	position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
@@ -141,18 +147,20 @@ label:hover var:not(:first-child){
     position: relative;
     background: aliceblue;
     box-shadow: 0 0 10px lightgrey;
+	top: -70px;
 }
 #popUpBox .popUpClose{
 	position: absolute;
     top: -40px;
-    right: -40px;
+    right: -4px;
     padding: 4px 8px;
 	box-shadow: 0 0 10px lightgrey;
 }
 
 #popUpBox textarea{
 	min-height: 120px;
-	min-width: 300px;
+	min-width: 230px;
+	width: 500px;
 }
 #popUpBox i{
 	display: block;

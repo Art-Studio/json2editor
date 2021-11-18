@@ -23,7 +23,7 @@
 			<div id="file">
 				<input id="jsonFile" type="file" hidden="hidden" />
 				<button id="openFile">Open file</button>
-				<button id="saveFile">Save file</button>
+				<button id="saveFile" disabled>Save file</button>
 			</div>
 			<div id="nodeBox">
 				<i>Breadcrumbs:</i>
@@ -47,7 +47,9 @@
 				<center>
 					<div class="middle">
 						<div class="frame">
-							<button class="popUpClose" onClick="app.tools.hidePopup();">✕</button>
+							<button class="popUpClose" onClick="app.tools.hidePopup();" title="Save & Close">
+								✕
+							</button>
 							<div class="content">
 								<i></i>
 								<textarea></textarea>
