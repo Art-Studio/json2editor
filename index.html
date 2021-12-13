@@ -20,10 +20,23 @@
 
 	<body>
 		<div id="mainBox">
-			<div id="file">
-				<input id="jsonFile" type="file" hidden="hidden" />
-				<button id="openFile">Open file</button>
-				<button id="saveFile" disabled>Save file</button>
+			<div id="menuBox">
+				<div class="menu file">
+					<button>File...</button>
+					<input id="jsonFile" type="file" hidden="hidden" />
+					<div class="subMenu">
+						<button id="openFile">Open</button>
+						<button id="newFile">New</button>
+						<button id="saveFile" disabled>Save</button>
+					</div>
+				</div>
+				<div class="menu new">
+					<button>New...</button>
+					<div class="subMenu">
+						<button id="newNode">Node</button>
+						<button id="newProp">Prop</button>
+					</div>
+				</div>
 			</div>
 			<div id="nodeBox">
 				<i>Breadcrumbs:</i>
@@ -47,11 +60,13 @@
 				<center>
 					<div class="middle">
 						<div class="frame">
-							<button class="popUpClose" onClick="app.tools.hidePopup();" title="Save & Close">
+							<button class="popUpClose" title="Save & Close">
 								✕
 							</button>
 							<div class="content">
 								<i></i>
+								<input type="text" disabled>
+								<br>
 								<textarea></textarea>
 							</div>
 						</div>

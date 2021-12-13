@@ -42,7 +42,7 @@ $(function(){
 			});
 			
 			if(!app.node.history[app.node.current]){ app.node.history[app.node.current] = {}; }
-
+			
 			$node.html(output);
 
 			//console.log(arrPath);

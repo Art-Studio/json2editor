@@ -18,8 +18,11 @@ var app = {
 		app.node.history = {};
 		app.node.current = '';
 		app.node.get('root');
-		$('#nodeBox').show();
 		
+		$('#nodeBox').show();
+
+		$('#mainBox').addClass('ready');
+		$('#saveFile').removeAttr('disabled');
 		console.log('processing:', 'success');
 	}
 	
@@ -29,4 +32,11 @@ $(function(){
 
 	// ready
 	console.log('app Ready');
+	
+	// close menu after click
+    $('.menu').off().click(function(){
+        var $this = $(this);
+        $this.addClass('hide');
+        setTimeout(function(){ $this.removeClass('hide'); }, 99);
+    });
 });

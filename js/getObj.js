@@ -73,7 +73,7 @@ $(function(){
 				output.push(
 					$('<label>', {
 						click: function(){
-							app.tools.showPopup(el.key, el.val);
+							app.tools.exec(el.key, el.val, 'setProp');
 						}
 					})
 					.append( $('<var>', { text: el.key }) )

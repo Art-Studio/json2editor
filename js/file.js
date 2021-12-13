@@ -22,11 +22,18 @@ $(function(){
 				});
 
 			});
+			
+			// newFile
+			$('#newFile').click(app.file.new);
 
 			// saveFile
 			$('#saveFile').click(function(){
-				app.file.save( JSON.stringify(app.data.root, null, 4), _fileName, 'text/plain' );
+				app.file.save( JSON.stringify(app.data.root, null, 4), _fileName ? _fileName : 'myFile.json', 'text/plain' );
 			});
+		},
+		
+		new: function(){
+			app.processing({});
 		},
 		
 		save: function(data, fileName, type){
@@ -59,7 +66,6 @@ $(function(){
 				console.log('readFile:', 'success');
 				app.processing(result);
 				
-				$('#saveFile').removeAttr('disabled');
 				_fileName = file.name;
 			};
 		},
