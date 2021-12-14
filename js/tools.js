@@ -6,37 +6,21 @@ $(function(){
 	
 	var _key = '';
 	var _val = '';
-	var _type = '';
 	
 	var $window = $(window);
 	var $popUp = $('#popUpBox');
 	
 	app.tools = {
 		
-		exec: function(key, val, type){
+		getObj: function(key, val){
 			
 			_key = key;
 			_val = val;
-			_type = type;
-			
-			if(_type === 'newNode'){
-				$('#info2', $popUp).text('Create a node in JSON format:');
-			} else {
-				$('#info2', $popUp).text('Value:');
-			}
-			
-			if(_type === 'newProp' || _type === 'newNode'){
-				$('input', $popUp).prop('disabled', false);
-			} else {
-				$('input', $popUp).prop('disabled', true);
-			}
 			
 			$('input', $popUp)
 				.val(key)
 				.on('change keyup paste', function(){
-					if(_type === 'newProp' || _type === 'newNode'){
-						_key = $(this).val();
-					}
+					_key = $(this).val();
 				});
 			
 			$('textarea', $popUp)
@@ -53,7 +37,7 @@ $(function(){
 		}
 	}
 	
-	function newObj(key, val){
+	function setObj(key, val){
 			
         var obj = app.data;
         var path = (app.node.current + '.' + key).split('.');
@@ -63,35 +47,39 @@ $(function(){
         obj[path.shift()] = val;
     }
 	
-	// close popUp
-	$('.popUpClose', $popUp).click(function(){
+	function updateData(){
 		
-		if(_type === 'newNode' && _key !== 'node_name' && _key){
-			//newObj(_key, JSON.parse($('textarea', $popUp).val()));
-			newObj(_key, $.parseJSON($('textarea', $popUp).val()));
-			//app.node.history = {};
-			app.node.history[app.node.current] = {}; // update
-		}else{
-			if(_key !== 'prop_name' && _key !== 'node_name' && _key){
-				newObj(_key, _val);
+		if(isNaN(_val)){
+			try{
+				_val = $.parseJSON(_val);
+				// update node
+				//app.node.history = {};
+				app.node.history[app.node.current] = {};
+			} catch(e) {
+				//return false;
 			}
 		}
 		
-		$('textarea', $popUp).off();
-        $('a:last', '#node').trigger('click'); // update
+		setObj(_key, _val);
+		
+		$('input, textarea', $popUp).off();
+		
+		// update prop
+        $('a:last', '#node').trigger('click');
+	}
+	
+	// close popUp
+	$('.popUpClose', $popUp).click(function(){
+		
+		updateData();
         $popUp.hide();
 	});
 	
 	// new node
-	$('#newNode').click(function(){
-        app.tools.exec('node_name', '{}', 'newNode');
-        console.log('createNode');
-    });
-	
-	// new prop
-	$('#newProp').click(function(){
-        app.tools.exec('prop_name', 'propValue', 'newProp');
-        console.log('createProp');
+	$('#newObj').click(function(){
+		
+        app.tools.getObj('key_name', '{}');
+        console.log('createObj');
     });
 	
 });

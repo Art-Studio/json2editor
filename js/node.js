@@ -46,7 +46,7 @@ $(function(){
 			$node.html(output);
 
 			//console.log(arrPath);
-			app.getObj(arrPath);
+			app.parseObj(arrPath);
 		}
 	}
 	

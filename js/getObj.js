@@ -7,7 +7,7 @@ $(function(){
 	var $nextNode = $('#nextNode');
 	var $prop = $('#prop');
 	
-	app.getObj = function(arrPath){
+	app.parseObj = function(arrPath){
 		
 		//console.log('getObj ->');
 
@@ -73,7 +73,7 @@ $(function(){
 				output.push(
 					$('<label>', {
 						click: function(){
-							app.tools.exec(el.key, el.val, 'setProp');
+							app.tools.getObj(el.key, el.val);
 						}
 					})
 					.append( $('<var>', { text: el.key }) )
