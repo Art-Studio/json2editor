@@ -2,7 +2,7 @@
 
 body{
 	margin: 0;
-	font-family: Verdana, Tahoma, sans-serif;
+	font-family: monospace, 'Verdana', 'Tahoma', sans-serif;
 	font-size: 16px;
 }
 
@@ -26,7 +26,7 @@ button, #node a, input[type="button"]{
     background: lightyellow;
     color: darkgreen;
 	cursor: pointer;
-	font-family: Verdana, Tahoma, sans-serif;
+	font-family: monospace, 'Verdana', 'Tahoma', sans-serif;
 	font-size: 16px;
 }
 
@@ -56,6 +56,9 @@ button[disabled]{
     box-shadow: 2px 2px 5px #ccc;
     border: 1px solid #ccc;
     top: 98%;
+	left: 5px;
+	min-width: 100%;
+    box-sizing: border-box;
 }
 #menuBox .subMenu > *{
 	display: block;
@@ -186,19 +189,32 @@ label:hover var:not(:first-child){
 }
 #popUpBox .popUpClose{
 	position: absolute;
-    top: -40px;
-    right: -4px;
+    top: -10px;
+    right: 2px;
     padding: 4px 8px;
 	box-shadow: 0 0 10px lightgrey;
 }
-
-#popUpBox textarea{
+#popUpBox .content > *{
+	display: block;
+	width: 100%;
+    box-sizing: border-box;
+	font-family: monospace, 'Verdana', 'Tahoma', sans-serif;
+	font-size: 14px;
+}
+#popUpBox i{
+	padding: 8px 0 2px;
+}
+#popUpBox .content textarea{
 	min-height: 120px;
 	min-width: 230px;
 	width: 500px;
 }
-#popUpBox i{
-	display: block;
-    text-align: left;
-    margin-bottom: 10px;
+#popUpBox .content input{
+	
+}
+#popUpBox .content input:disabled{
+	background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
 }

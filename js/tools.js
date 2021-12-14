@@ -5,6 +5,7 @@
 $(function(){
 	
 	var _key = '';
+	var _val = '';
 	var _type = '';
 	
 	var $window = $(window);
@@ -15,9 +16,16 @@ $(function(){
 		exec: function(key, val, type){
 			
 			_key = key;
+			_val = val;
 			_type = type;
 			
-			if(_type === 'newProp'){
+			if(_type === 'newNode'){
+				$('#info2', $popUp).text('Create a node in JSON format:');
+			} else {
+				$('#info2', $popUp).text('Value:');
+			}
+			
+			if(_type === 'newProp' || _type === 'newNode'){
 				$('input', $popUp).prop('disabled', false);
 			} else {
 				$('input', $popUp).prop('disabled', true);
@@ -26,7 +34,7 @@ $(function(){
 			$('input', $popUp)
 				.val(key)
 				.on('change keyup paste', function(){
-					if(_type === 'newProp'){
+					if(_type === 'newProp' || _type === 'newNode'){
 						_key = $(this).val();
 					}
 				});
@@ -38,24 +46,14 @@ $(function(){
 					maxHeight: $window.height() / 1.8
 				})
 				.on('change keyup paste', function(){
-					if(_type === 'setProp' || _type === 'newProp' && _key !== 'prop_name'){
-						setProp(_key, $(this).val());
-					}
+					_val = $(this).val();
 				});
 			
 			$popUp.show();
-		},
-		
-		newNode: function(key, val){
-			console.log(key, val);
-		},
-		
-		newProp: function(key, val){
-			console.log(key, val);
 		}
 	}
 	
-	function setProp(key, val){
+	function newObj(key, val){
 			
         var obj = app.data;
         var path = (app.node.current + '.' + key).split('.');
@@ -68,6 +66,17 @@ $(function(){
 	// close popUp
 	$('.popUpClose', $popUp).click(function(){
 		
+		if(_type === 'newNode' && _key !== 'node_name' && _key){
+			//newObj(_key, JSON.parse($('textarea', $popUp).val()));
+			newObj(_key, $.parseJSON($('textarea', $popUp).val()));
+			//app.node.history = {};
+			app.node.history[app.node.current] = {}; // update
+		}else{
+			if(_key !== 'prop_name' && _key !== 'node_name' && _key){
+				newObj(_key, _val);
+			}
+		}
+		
 		$('textarea', $popUp).off();
         $('a:last', '#node').trigger('click'); // update
         $popUp.hide();
@@ -75,13 +84,13 @@ $(function(){
 	
 	// new node
 	$('#newNode').click(function(){
-        app.tools.exec('Node name:', 'node_name', 'newNode');
+        app.tools.exec('node_name', '{}', 'newNode');
         console.log('createNode');
     });
 	
 	// new prop
 	$('#newProp').click(function(){
-        app.tools.exec('prop_name', 'prop value', 'newProp');
+        app.tools.exec('prop_name', 'propValue', 'newProp');
         console.log('createProp');
     });
 	
