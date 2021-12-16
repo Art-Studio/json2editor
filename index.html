@@ -5,15 +5,44 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		
 		<link rel="icon" type="image/png" href="favicon.png">
-		<link rel="stylesheet" type="text/css" href="style.css">
 		
-		<script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
-		<script type="text/javascript" src="js/functions.js"></script>
-		<script type="text/javascript" src="js/file.js"></script>
-		<script type="text/javascript" src="js/node.js"></script>
-		<script type="text/javascript" src="js/getObj.js"></script>
-		<script type="text/javascript" src="js/tools.js"></script>
-		<script type="text/javascript" src="js/paginate.js"></script>
+		<script id="init" type="text/javascript">
+			
+			var verNum = '16.12.2021';
+			
+			var lName = [
+				'style.css'
+			];
+			
+			var sName = [
+				'//code.jquery.com/jquery-latest.min.js',
+				'js/functions.js',
+				'js/file.js',
+				'js/node.js',
+				'js/getObj.js',
+				'js/tools.js',
+				'js/paginate.js'
+			];
+			
+			lName.forEach(function(el) {
+				var l = document.createElement('link');
+				l.href = el + '?v.' + verNum;
+				l.type = 'text/css';
+				l.rel = 'stylesheet';
+				l.async = true;
+				document.head.appendChild(l);
+			});
+			
+			sName.forEach(function(el) {
+				var s = document.createElement('script');
+				s.src = el + '?v.' + verNum;
+				s.type = 'text/javascript';
+				s.async = false;
+				document.head.appendChild(s);
+			});
+			
+			document.getElementById('init').remove();
+		</script>
 		
 		<title>json2editor</title>
 	</head>
@@ -68,6 +97,8 @@
 								<i id="info2">Value or JSON object:</i>
 								<textarea></textarea>
 							</div>
+							<button id="updateObj">Update</button>
+							<button id="deleteObj">Delete</button>
 						</div>
 					</div>
 				</center>

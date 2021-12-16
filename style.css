@@ -194,6 +194,9 @@ label:hover var:not(:first-child){
     padding: 4px 8px;
 	box-shadow: 0 0 10px lightgrey;
 }
+#popUpBox .content{
+	padding: 4px;
+}
 #popUpBox .content > *{
 	display: block;
 	width: 100%;
@@ -217,4 +220,7 @@ label:hover var:not(:first-child){
     border: none;
     padding: 0;
     margin: 0;
+}
+#popUpBox .content button{
+	width: auto;
 }

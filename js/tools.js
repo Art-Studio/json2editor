@@ -6,6 +6,7 @@ $(function(){
 	
 	var _key = '';
 	var _val = '';
+	var _action = '';
 	
 	var $window = $(window);
 	var $popUp = $('#popUpBox');
@@ -43,24 +44,33 @@ $(function(){
         var path = (app.node.current + '.' + key).split('.');
 
         while(path.length > 1){ obj = obj[path.shift()]; }
-
-        obj[path.shift()] = val;
+		
+		if(_action === 'deleteObj'){
+			delete obj[path.shift()];
+		}else{
+			obj[path.shift()] = val;
+		}
     }
 	
-	function updateData(){
+	function updateData(action){
 		
-		if(isNaN(_val)){
+		_action = action;
+		
+		if(isNaN(_val) && _action === 'updateObj'){
 			try{
 				_val = $.parseJSON(_val);
-				// update node
-				//app.node.history = {};
-				app.node.history[app.node.current] = {};
+				//app.paginate.init(app.data.root, 500, 1);
 			} catch(e) {
 				//return false;
 			}
 		}
 		
-		setObj(_key, _val);
+		if(_action){
+			// update node
+            //app.node.history = {};
+            app.node.history[app.node.current] = {};
+			setObj(_key, _val);
+		}
 		
 		$('input, textarea', $popUp).off();
 		
@@ -72,6 +82,20 @@ $(function(){
 	$('.popUpClose', $popUp).click(function(){
 		
 		updateData();
+        $popUp.hide();
+	});
+	
+	// update object
+	$('#updateObj', $popUp).click(function(){
+		
+		updateData('updateObj');
+        $popUp.hide();
+	});
+	
+	// delete object
+	$('#deleteObj', $popUp).click(function(){
+		
+		updateData('deleteObj');
         $popUp.hide();
 	});
 	
